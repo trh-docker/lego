@@ -6,8 +6,7 @@ RUN apt-get -y update && apt-get -y upgrade && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ENV GO111MODULE=on
 RUN git clone https://github.com/xenolf/lego.git && cd lego &&\
-    go mod init && go mod tidy &&\
-    go get ./... &&\
+    go mod init && go mod tidy && go mod vendor &&\
     make build
 
 FROM quay.io/spivegin/tlmbasedebian
