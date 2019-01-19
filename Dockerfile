@@ -4,9 +4,8 @@ WORKDIR /opt/src/src/github.com/xenolf/
 RUN apt-get -y update && apt-get -y upgrade && \
     apt-get -y install gcc && apt-get -y autoremove && apt-get -y clean &&\
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-ENV GO111MODULE=on
+ENV GO111MODULE=off
 RUN git clone https://github.com/xenolf/lego.git
-RUN cd lego && go mod init && go mod tidy && go mod vendor 
 RUN cd lego && make build
 
 FROM quay.io/spivegin/tlmbasedebian
